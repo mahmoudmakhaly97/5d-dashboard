@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<!--[if IE 9]>         <html class="ie9 no-focus" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-focus" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>OneUI - Admin Dashboard Template &amp; UI Framework</title>
+
+        <meta name="description" content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
+        <meta name="author" content="pixelcave">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+        <!-- Web fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+
+        <!-- Bootstrap and OneUI CSS framework -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" id="css-main" href="assets/css/oneui.css">
+
+    </head>
+    <body>
+        -->
+        <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+
+            <!-- Sidebar -->
+            <nav id="sidebar">
+                <!-- Sidebar Scroll Container -->
+                <div id="sidebar-scroll">
+                    <!-- Sidebar Content -->
+                    <!-- Adding .sidebar-mini-hide to an element will hide it when the sidebar is in mini mode -->
+                    <div class="sidebar-content">
+                        <!-- Side Header -->
+                        <div class="side-header side-content bg-white-op">
+                            <!-- Layout API, functionality initialized in App() -> uiLayoutApi() -->
+                            <button class="btn btn-link text-gray pull-right hidden-md hidden-lg" type="button" data-toggle="layout" data-action="sidebar_close">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <!-- Themes functionality initialized in App() -> uiHandleTheme() -->
+                            <a class="h5 text-white" href="index.html">
+                                <span class="h4 font-w600 sidebar-mini-hide">UCAST</span>
+                            </a>
+                        </div>
+                        <!-- END Side Header -->
+
+                        <!-- Side Content -->
+                        <div class="side-content">
+                            <ul class="nav-main">
+                                <li>
+                                    <a href="base_pages_dashboard.html"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                                </li>
+                                <li class="nav-main-heading"><span class="sidebar-mini-hide">Ucast Managements</span></li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-badge"></i><span class="sidebar-mini-hide">Accounts</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="base_ui_widgets.html">Accounts</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-grid"></i><span class="sidebar-mini-hide">Profiles</span></a>
+                                    <ul>
+                                        <li>
+                                            <a href="base_tables_styles.html">Profiles</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- END Side Content -->
+                    </div>
+                    <!-- Sidebar Content -->
+                </div>
+                <!-- END Sidebar Scroll Container -->
+            </nav>
+            <!-- END Sidebar -->
+
+            <!-- Header -->
+            <header id="header-navbar" class="content-mini content-mini-full">
+                <!-- Header Navigation Right -->
+                <ul class="nav-header pull-right">
+                    <li>
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
+                                <img src="assets/img/avatars/avatar10.jpg" alt="Avatar">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="dropdown-header">Profile</li>
+                                <li>
+                                    <a tabindex="-1" href="base_pages_inbox.html">
+                                        <i class="si si-envelope-open pull-right"></i>
+                                        <span class="badge badge-primary pull-right">3</span>Inbox
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="base_pages_profile.html">
+                                        <i class="si si-user pull-right"></i>
+                                        <span class="badge badge-success pull-right">1</span>Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="javascript:void(0)">
+                                        <i class="si si-settings pull-right"></i>Settings
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Actions</li>
+                                <li>
+                                    <a tabindex="-1" href="base_pages_lock.html">
+                                        <i class="si si-lock pull-right"></i>Lock Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a tabindex="-1" href="base_pages_login.html">
+                                        <i class="si si-logout pull-right"></i>Log out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </header>
+            <!-- END Header -->
+
+            <!-- Main Container -->
+            <main id="main-container">
+                <!-- Page Header -->
+                <div class="content bg-gray-lighter">
+                    <div class="row items-push">
+                        <div class="col-sm-7">
+                            <h1 class="page-heading">
+                                Accounts List <small>Manage all UCAST Accounts</small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Page Header -->
+
+                <!-- Page Content -->
+                <div class="content">
+                    <div class="block">
+                        <div class="block-header bg-gray-lighter">
+                            <h3 class="block-title">Talents table</h3>
+                        </div>
+
+                        <div class="block-content form-horizontal">
+                            <input type="hidden" name="courseRequirements" class="courseRequirement" />
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Location</th>
+                                        <th>Porfiles Count</th>
+                                        <th >Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="reqTb">
+                                    <tr class="reqNoResult">
+                                        <td colspan="6">No Result</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="block">
+                        <div class="block-header bg-gray-lighter">
+                            <h3 class="block-title">Recruiter table</h3>
+                        </div>
+
+                        <div class="block-content form-horizontal">
+                            <input type="hidden" name="courseRequirements" class="courseRequirement" />
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name/Company Name</th>
+                                        <th>Type</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Location</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="reqTb">
+                                    <tr class="reqNoResult">
+                                        <td colspan="6">No Result</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Page Content -->
+            </main>
+            <!-- END Main Container -->
+
+            <!-- Footer -->
+            <footer id="page-footer" class="content-mini content-mini-full font-s12 bg-gray-lighter clearfix">
+                <div class="pull-right">
+                    Crafted with <i class="fa fa-heart text-city"></i> by <a class="font-w600" href="http://goo.gl/vNS3I" target="_blank">pixelcave</a>
+                </div>
+                <div class="pull-left">
+                    <a class="font-w600" href="http://goo.gl/6LF10W" target="_blank">OneUI 3.1</a> &copy; <span class="js-year-copy"></span>
+                </div>
+            </footer>
+            <!-- END Footer -->
+        </div>
+        <!-- END Page Container -->
+
+        
+        <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
+        <script src="assets/js/core/jquery.min.js"></script>
+        <script src="assets/js/core/bootstrap.min.js"></script>
+        <script src="assets/js/core/jquery.slimscroll.min.js"></script>
+        <script src="assets/js/core/jquery.scrollLock.min.js"></script>
+        <script src="assets/js/core/jquery.appear.min.js"></script>
+        <script src="assets/js/core/jquery.countTo.min.js"></script>
+        <script src="assets/js/core/jquery.placeholder.min.js"></script>
+        <script src="assets/js/core/js.cookie.min.js"></script>
+        <script src="assets/js/app.js"></script>
+        <script src="https://smtpjs.com/smtp.js"></script>
+        <script>
+            Email.send("noreply@Excel.Travel",
+                "amir.jhanem93@gmail.com",
+                "This is a subject",
+                "This is body",
+                { token: "7f070faf-a947-44be-b0d1-3ec9fdd8391b" });
+
+
+
+
+
+
+
+
+
+            $(function () {
+                $("body").on("click", ".form-btn", function () {
+                    var formfieldname = $("#formfieldname").val();
+                    var formfieldemailAddress = $("#formfieldemailAddress").val();
+                    var formfieldphone = $("#formfieldphone").val();
+                    var formfieldcomment = $("#formfieldcomment").val();
+                    Email.send("n.reply.excel@gmail.com",
+                        "amir.jhanem93@gmail.com",
+                        "This is a subject",
+                        '<html><head><style>td,th{padding:10px}table{text-align:center}</style></head > <body><table border="1" style="border-collapse:collapse"><thead><tr><th>Field</th><th>Content</th></tr></thead><tbody><tr><td>Name</td><td>' + formfieldname + '</td></tr><tr><td>email</td><td>' + formfieldemailAddress + '</td></tr><tr><td>phone</td><td>' + formfieldphone + '</td></tr><tr><td>comment</td><td>' + formfieldcomment +'</td></tr></tbody></table></body></html>',
+                        { token: "3f87a489-14f3-44d6-9d1a-9c62b10f8c8b" });
+                });
+            });
+        </script>
+    </body>
+</html>

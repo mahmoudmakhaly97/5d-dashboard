@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>Sign In</title>
+      <meta
+         name="viewport"
+         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+         />
+      <link rel="shortcut icon" href="assets/img/photos/5d-logo.png" />
+      <link
+         rel="stylesheet"
+         href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700"
+         />
+      <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+      <link rel="stylesheet" id="css-main" href="assets/css/oneui.css" />
+      <link rel="stylesheet" id="css-main" href="assets/css/5d/auth.css" />
+   </head>
+   <body>
+      <div >
+      <main id="main-container" class="login">
+       <!-- start banner -->
+          <div class="banner">
+            <section class="content content-full content-boxed overflow-hidden">
+               <div class="push-100-t push-50 text-center">
+                  <div class="banner-logo-container">
+                     <img
+                        class="img-responsive"
+                        src="assets/img/photos/5d-logo.png"
+                        alt=""
+                        />
+                  </div>
+                  <h1
+                     class="h2 text-primary push-10 visibility-hidden"
+                     data-toggle="appear"
+                     data-class="animated fadeInDown"
+                     >
+                     Log in to 5d dashboard.
+                  </h1>
+               </div>
+            </section>
+         </div>
+       <!-- end banner -->
+      <!-- start login form  -->
+          <div class="bg-white">
+            <section class="content content-boxed">
+               <div class="row items-push push-30-t">
+                  <div class="col-md-6 col-md-offset-3">
+                     <form class="form-horizontal">
+                        <div class="form-group">
+                           <div class="col-xs-12">
+                              <div class="form-material form-material-primary">
+                                 <input
+                                    class="form-control"
+                                    type="email"
+                                    placeholder="Enter your email."
+                                    id="userName"
+                                    />
+                                 <label for="userName">Username</label>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-xs-12">
+                              <div class="form-material form-material-primary">
+                                 <input
+                                    class="form-control"
+                                    type="password"
+                                    id="password"
+                                    placeholder="Enter your password"
+                                    />
+                                 <label for="password">Password</label>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-xs-12 text-center">
+                              <label class="css-input switch switch-sm switch-primary">
+                              <input
+                                 type="checkbox"
+                                 id="remember-me"
+                                 /><span></span> Remember Me?
+                              </label>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                              <button class="btn btn-block bg-primary login-btn">
+                              <i class="fa fa-arrow-right pull-right"></i> Log in
+                              </button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </section>
+         </div>
+         <div class="bg-gray-lighter">
+            <section class="content">
+               <div class="text-center">
+                  <h3
+                     class="h4 visibility-hidden reset-password-btn"
+                     data-toggle="appear"
+                     >
+                     <a href="forgot-password.html"> Forgot Your Password ?</a>
+                  </h3>
+               </div>
+            </section>
+         </div>
+      <!-- end login form  -->
+      </main>
+   <!-- start footer -->
+       <footer id="page-footer"  >
+         <div class="content content-boxed">
+            <div class="font-s12 push-20 clearfix">
+               <hr class="remove-margin-t" />
+               <div class="pull-right">
+                  Crafted with <i class="fa fa-heart text-city"></i> by
+                  <a class="font-w600" href="#">pixelcave</a>
+               </div>
+               <div class="pull-left">
+                  <a class="font-w600" href="#">OneUI 3.1</a>
+                  &copy; <span class="js-year-copy"></span>
+               </div>
+            </div>
+         </div>
+      </footer>
+   <!-- end  footer -->
+    
+      <script src="assets/js/core/jquery.min.js"></script>
+      <script src="assets/js/core/bootstrap.min.js"></script>
+      <script src="assets/js/core/jquery.scrollLock.min.js"></script>
+      <script src="assets/js/core/jquery.appear.min.js"></script>
+      <script src="assets/js/core/jquery.placeholder.min.js"></script>
+      <script src="assets/js/app.js"></script>
+      <!-- Page JS Code -->
+      <script>
+         jQuery(function () {
+         
+           App.initHelpers("appear");
+         });
+      </script>
+   </body>
+</html>
+ 

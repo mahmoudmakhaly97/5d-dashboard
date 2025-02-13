@@ -1,0 +1,22 @@
+#main-container.login .banner {
+  background-color: #dfe3e7;
+}
+#main-container.login .banner-logo-container {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+}
+
+#main-container.login .login-btn:hover {
+  color: #fff;
+  background-color: rgba(113, 25, 153, 0.6) !important;
+}
+#main-container.login .reset-password-btn {
+  color: rgba(113, 25, 153, 0.8) !important;
+}
+#main-container.login .content p,
+.content .push,
+.content .block,
+.content .items-push > div {
+  margin-bottom: 0;
+}
