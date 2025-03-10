@@ -75,65 +75,76 @@ async function fetchEmployeeDetails(employeeId) {
 }
 
 // Populate the table with employee data for the current page
+// Populate the table with employee data for the current page
+// Populate the table with employee data for the current page
 async function populateTable(employees) {
   const tbody = document.querySelector("table tbody");
+  const loadingDiv = document.getElementById("loading");
 
-  // Clear existing rows
-  tbody.innerHTML = "";
+  // Show loading spinner
+  loadingDiv.style.display = "block";
+  tbody.innerHTML = ""; // Clear existing rows
 
-  // Loop through each employee and fetch their details
-  for (const employee of employees) {
-    const employeeDetails = await fetchEmployeeDetails(employee.id);
+  try {
+    // Fetch all employee details in parallel
+    const employeeDetailsList = await Promise.all(
+      employees.map((employee) => fetchEmployeeDetails(employee.id))
+    );
 
-    // Create a new row
-    const row = document.createElement("tr");
+    // Loop through each employee and create table rows
+    employees.forEach((employee, index) => {
+      const employeeDetails = employeeDetailsList[index];
 
-    // Employee ID
-    const employeeIdCell = document.createElement("td");
-    employeeIdCell.className = "text-left";
-    employeeIdCell.innerHTML = `<div    style="display: flex; align-items: center; gap: 20px">
-    <div>
-       ${
-         employee.imagePath
-           ? ` <img 
-           style="width: 40px; height: 40px;border-radius: 50%;overflow:hidden"
-            src=${`http://attendance-service.5d-dev.com${employee.imagePath}`}
-          />`
-           : `<img
-           style="width: 40px; height: 40px;border-radius: 50%;overflow:hidden"
-            src=${`https://placehold.co/30x30`}
-          />`
-       }
-        </div>
-    <div>
-    <a class="font-"  style="white-space: nowrap;margin-bottom:5px;display:block" href="#"><strong>${
-      employee.name
-    }</strong></a>
-<div>
-${employee.jobTitle || "job title"}
-</div>
-      </div>  </div>`;
-    row.appendChild(employeeIdCell);
+      // Create a new row
+      const row = document.createElement("tr");
 
-    // Email
-    const emailCell = document.createElement("td");
-    emailCell.className = "hidden-xs text-center";
-    emailCell.textContent = employee.email;
-    row.appendChild(emailCell);
+      // Employee ID and Image
+      const employeeIdCell = document.createElement("td");
+      employeeIdCell.className = "text-left";
+      employeeIdCell.innerHTML = `<div style="display: flex; align-items: center; gap: 20px">
+      <div>
+        ${
+          employee.imagePath
+            ? `<img style="width: 40px; height: 40px;border-radius: 50%;overflow:hidden" 
+              src="http://attendance-service.5d-dev.com${employee.imagePath}" />`
+            : `<img style="width: 40px; height: 40px;border-radius: 50%;overflow:hidden"
+              src="https://placehold.co/30x30" />`
+        }
+      </div>
+      <div>
+        <a class="font-" style="white-space: nowrap;margin-bottom:5px;display:block" href="#">
+          <strong>${employee.name}</strong>
+        </a>
+        <div>${employee.jobTitle || "job title"}</div>
+      </div>
+    </div>`;
+      row.appendChild(employeeIdCell);
 
-    // Department
-    const departmentCell = document.createElement("td");
-    departmentCell.textContent = employee.department;
-    row.appendChild(departmentCell);
+      // Email
+      const emailCell = document.createElement("td");
+      emailCell.className = "hidden-xs text-center";
+      emailCell.textContent = employee.email;
+      row.appendChild(emailCell);
 
-    // Manager
-    const managerCell = document.createElement("td");
-    managerCell.className = "visible-lg";
-    managerCell.textContent = employeeDetails?.managerName || ""; // Use managerName from employeeDetails
-    row.appendChild(managerCell);
+      // Department
+      const departmentCell = document.createElement("td");
+      departmentCell.textContent = employee.department;
+      row.appendChild(departmentCell);
 
-    // Append the row to the table body
-    tbody.appendChild(row);
+      // Manager
+      const managerCell = document.createElement("td");
+      managerCell.className = "visible-lg";
+      managerCell.textContent = employeeDetails?.managerName || "";
+      row.appendChild(managerCell);
+
+      // Append row to table
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Error loading employee data:", error);
+  } finally {
+    // Hide loading spinner
+    loadingDiv.style.display = "none";
   }
 }
 
