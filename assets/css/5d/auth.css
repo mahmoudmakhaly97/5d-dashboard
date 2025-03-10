@@ -20,3 +20,9 @@
 .content .items-push > div {
   margin-bottom: 0;
 }
+div:where(.swal2-container) div:where(.swal2-popup) {
+
+  padding: 0 0 3.25em;
+
+  font-size: 1.3rem!important;
+}

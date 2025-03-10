@@ -46,7 +46,7 @@
             <section class="content content-boxed">
                <div class="row items-push push-30-t">
                   <div class="col-md-6 col-md-offset-3">
-                     <form class="form-horizontal">
+                     <form class="form-horizontal" id="loginForm">
                         <div class="form-group">
                            <div class="col-xs-12">
                               <div class="form-material form-material-primary">
@@ -54,9 +54,9 @@
                                     class="form-control"
                                     type="email"
                                     placeholder="Enter your email."
-                                    id="userName"
+                                    id="email"
                                     />
-                                 <label for="userName">Username</label>
+                                 <label for="email">Email</label>
                               </div>
                            </div>
                         </div>
@@ -140,6 +140,8 @@
            App.initHelpers("appear");
          });
       </script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script src="js/sign-in.js"></script>
    </body>
 </html>
  
