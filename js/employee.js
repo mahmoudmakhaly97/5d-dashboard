@@ -1,10 +1,10 @@
 // Constants
-const ITEMS_PER_PAGE = 7; // Number of items to display per page
+const ITEMS_PER_PAGE = 10; // Number of items to display per page
 let currentPage = 1; // Track the current page
-let allEmployees = []; // Store all employees fetched from the API
+let totalPages = 1; // Track the total number of pages
 
-// Fetch employees from the API
-async function fetchEmployees() {
+// Fetch employees for a specific page
+async function fetchEmployees(pageNumber, pageSize) {
   const authToken =
     localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
 
@@ -15,7 +15,7 @@ async function fetchEmployees() {
 
   try {
     const response = await fetch(
-      "http://attendance-service.5d-dev.com/api/Employee/GetAllEmployees",
+      `http://attendance-service.5d-dev.com/api/Employee/GetAllEmployees?pageNumber=${pageNumber}&pageSize=${pageSize}`,
       {
         method: "GET",
         headers: {
@@ -30,52 +30,18 @@ async function fetchEmployees() {
     }
 
     const data = await response.json();
-    console.log(data);
+    console.log("Pagination Data:", data);
 
-    allEmployees = data; // Store all employees
-    return data; // Assuming the API returns an array of employee objects
+    // Update totalPages for pagination controls
+    totalPages = data.totalPages;
+
+    return data; // Return the entire response object
   } catch (error) {
     console.error("Error fetching employees:", error);
     alert("Failed to fetch employee data. Please try again.");
   }
 }
 
-// Fetch employee details (including manager's name) by ID
-async function fetchEmployeeDetails(employeeId) {
-  const authToken =
-    localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
-
-  if (!authToken) {
-    alert("No authentication token found. Please log in.");
-    return;
-  }
-
-  try {
-    const response = await fetch(
-      `http://attendance-service.5d-dev.com/api/Employee/GetEmployeeWithId/${employeeId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch employee details");
-    }
-
-    const data = await response.json();
-    return data; // Assuming the API returns employee details including manager's name
-  } catch (error) {
-    console.error("Error fetching employee details:", error);
-    return null;
-  }
-}
-
-// Populate the table with employee data for the current page
-// Populate the table with employee data for the current page
 // Populate the table with employee data for the current page
 async function populateTable(employees) {
   const tbody = document.querySelector("table tbody");
@@ -86,15 +52,8 @@ async function populateTable(employees) {
   tbody.innerHTML = ""; // Clear existing rows
 
   try {
-    // Fetch all employee details in parallel
-    const employeeDetailsList = await Promise.all(
-      employees.map((employee) => fetchEmployeeDetails(employee.id))
-    );
-
     // Loop through each employee and create table rows
-    employees.forEach((employee, index) => {
-      const employeeDetails = employeeDetailsList[index];
-
+    employees.forEach((employee) => {
       // Create a new row
       const row = document.createElement("tr");
 
@@ -134,14 +93,14 @@ async function populateTable(employees) {
       // Manager
       const managerCell = document.createElement("td");
       managerCell.className = "visible-lg";
-      managerCell.textContent = employeeDetails?.managerName || "";
+      managerCell.textContent = employee.managerName || ""; // Use managerName directly from the employee object
       row.appendChild(managerCell);
 
       // Append row to table
       tbody.appendChild(row);
     });
   } catch (error) {
-    console.error("Error loading employee data:", error);
+    console.error("Error populating table:", error);
   } finally {
     // Hide loading spinner
     loadingDiv.style.display = "none";
@@ -149,7 +108,7 @@ async function populateTable(employees) {
 }
 
 // Generate pagination links
-function generatePagination(totalPages) {
+function generatePagination() {
   const paginationContainer = document.querySelector(".pagination");
   paginationContainer.innerHTML = ""; // Clear existing pagination links
 
@@ -232,32 +191,28 @@ function addPageLink(pageNumber, container) {
 }
 
 // Handle page change
-function changePage(newPage) {
-  const totalPages = Math.ceil(allEmployees.length / ITEMS_PER_PAGE);
-
+async function changePage(newPage) {
   if (newPage < 1 || newPage > totalPages) {
     return; // Do nothing if the page is out of range
   }
 
   currentPage = newPage; // Update the current page
-  generatePagination(totalPages); // Regenerate pagination links
 
-  // Update the table with data for the current page
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const employeesForPage = allEmployees.slice(startIndex, endIndex);
-
-  populateTable(employeesForPage);
+  // Fetch data for the new page
+  const data = await fetchEmployees(currentPage, ITEMS_PER_PAGE);
+  if (data) {
+    populateTable(data.employees); // Populate the table with the new data
+    generatePagination(); // Regenerate pagination links
+  }
 }
 
-// On page load, fetch employees and initialize pagination
+// On page load, fetch employees for the first page and initialize pagination
 document.addEventListener("DOMContentLoaded", async function () {
-  const employees = await fetchEmployees();
+  const data = await fetchEmployees(currentPage, ITEMS_PER_PAGE);
 
-  if (employees) {
-    const totalPages = Math.ceil(employees.length / ITEMS_PER_PAGE);
-    generatePagination(totalPages); // Generate pagination links
-    changePage(1); // Load the first page
+  if (data) {
+    populateTable(data.employees); // Populate the table with the first page of data
+    generatePagination(); // Generate pagination links
   }
 });
 
@@ -275,4 +230,97 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = "/sign-in.html"; // Update this to your sign-in page URL
     });
   }
+});
+// .................................Add employee logic .................................
+
+document
+  .getElementById("add-employee-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Gather form data
+    const formData = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      department: document.getElementById("department").value,
+      managerId: document.getElementById("manager").value,
+      mobileNumber: "string", // Add a default value or collect from the form
+      jobTitle: "string", // Add a default value or collect from the form
+      isNormal: true, // Add a default value or collect from the form
+      isManager: true, // Add a default value or collect from the form
+      isPassedProbation: true, // Add a default value or collect from the form
+    };
+
+    // Send a POST request to the AddEmployee endpoint
+    fetch("http://attendance-service.5d-dev.com/api/Employee/AddEmployee", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Specify the content type as JSON
+      },
+      body: JSON.stringify(formData), // Convert the form data to JSON
+    })
+      .then((response) => {
+        if (!response.ok) {
+          // If the response is not OK, try to parse it as text
+          return response.text().then((text) => {
+            throw new Error(text); // Throw the plain text error
+          });
+        }
+        return response.json(); // Parse the response as JSON if it's OK
+      })
+      .then((data) => {
+        if (data) {
+          alert("Employee added successfully!");
+
+          // Reset the form
+          document.getElementById("add-employee-form").reset();
+          window.location.href = "employee.html";
+        }
+      })
+
+      .catch((error) => {
+        // Display the error message from the server
+        alert("Error: " + error.message);
+      });
+  });
+// Function to populate departments dropdown
+function populateDepartments() {
+  fetch("http://attendance-service.5d-dev.com/api/Employee/GetDepartments")
+    .then((response) => response.json())
+    .then((data) => {
+      const departmentSelect = document.getElementById("department");
+      departmentSelect.innerHTML = ""; // Clear existing options
+
+      data.forEach((department) => {
+        const option = document.createElement("option");
+        option.value = department.name; // Assuming the API returns an 'id' field
+        option.textContent = department.name; // Assuming the API returns a 'name' field
+        departmentSelect.appendChild(option);
+      });
+    })
+    .catch((error) => console.error("Error fetching departments:", error));
+}
+
+// Function to populate managers dropdown
+function populateManagers() {
+  fetch("http://attendance-service.5d-dev.com/api/Employee/GetAllManagers")
+    .then((response) => response.json())
+    .then((data) => {
+      const managerSelect = document.getElementById("manager");
+      managerSelect.innerHTML = ""; // Clear existing options
+
+      data.forEach((manager) => {
+        const option = document.createElement("option");
+        option.value = manager.id; // Assuming the API returns an 'id' field
+        option.textContent = manager.name; // Assuming the API returns a 'name' field
+        managerSelect.appendChild(option);
+      });
+    })
+    .catch((error) => console.error("Error fetching managers:", error));
+}
+
+// Populate dropdowns when the page loads
+document.addEventListener("DOMContentLoaded", () => {
+  populateDepartments();
+  populateManagers();
 });
