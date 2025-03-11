@@ -57,6 +57,9 @@ async function populateTable(employees) {
       // Create a new row
       const row = document.createElement("tr");
 
+      // Add employee ID as a data attribute
+      row.setAttribute("data-employee-id", employee.id);
+
       // Employee ID and Image
       const employeeIdCell = document.createElement("td");
       employeeIdCell.className = "text-left";
@@ -99,6 +102,18 @@ async function populateTable(employees) {
       // Append row to table
       tbody.appendChild(row);
     });
+
+    // Add click event listeners to rows
+    const rows = document.querySelectorAll("table tbody tr");
+    rows.forEach((row) => {
+      row.addEventListener("click", () => {
+        const employeeId = row.getAttribute("data-employee-id");
+        if (employeeId) {
+          // Redirect to employee details page with employee ID as a query parameter
+          window.location.href = `editEmployeeDetails.html?id=${employeeId}`;
+        }
+      });
+    });
   } catch (error) {
     console.error("Error populating table:", error);
   } finally {
@@ -106,7 +121,6 @@ async function populateTable(employees) {
     loadingDiv.style.display = "none";
   }
 }
-
 // Generate pagination links
 function generatePagination() {
   const paginationContainer = document.querySelector(".pagination");

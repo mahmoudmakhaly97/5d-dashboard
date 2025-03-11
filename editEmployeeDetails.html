@@ -3,7 +3,7 @@
 <html class="no-focus" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Employee</title>
+    <title>Edit Employee Details </title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -13,18 +13,12 @@
       rel="stylesheet"
       href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700"
     />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+   
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.css" />
+    <link rel="stylesheet" id="css-main" href="assets/css/5d/editEmployeeDetails.css" />
 
-    <link rel="stylesheet" id="css-main" href="assets/css/5d/auth.css" />
-    <link rel="stylesheet" id="css-main" href="assets/css/5d/employee.css" />
-  </head>
+   </head>
   <body>
     <div class="LOADER">
       <span
@@ -249,132 +243,41 @@
           <!-- All employees -->
           <div class="block">
             <div class="block-header bg-gray-lighter">
-              <div class="d-flex justify-content-between">
-                <h3 class="block-title">All Employees</h3>
-
-                <button
-                  class="btn btn-primary rounded-2 py-2 border-0"
-                  data-toggle="modal"
-                  data-target="#modal-fadein"
-                  type="button"
-                >
-                  Add Employee
-                </button>
-                <div
-                  class="modal fade"
-                  id="modal-fadein"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog add-employee-modal">
-                    <div class="modal-content" id="modal-content">
-                      <div
-                        class="block block-themed block-transparent remove-margin-b"
-                      >
-                        <div class="block-header bg-primary-dark">
-                          <ul class="block-options">
-                            <li>
-                              <button data-dismiss="modal" type="button">
-                                <i class="si si-close"></i>
-                              </button>
-                            </li>
-                          </ul>
-                          <h3 class="block-title">Add Employee</h3>
-                        </div>
-                        <div class="block-content">
-                          <div class="block-content pt-0">
-                            <form
-                              class="form-horizontal push-5-t"
-                              id="add-employee-form"
-                            >
-                              <div class="form-group">
-                                <label for="name">Employee Name</label>
-                                <input
-                                  class="form-control"
-                                  type="text"
-                                  id="name"
-                                  name="name"
-                                  placeholder="Enter  Employee Name"
-                                  required
-                                />
-                              </div>
-                              <div class="form-group">
-                                <label for="email">Employee Email</label>
-                                <input
-                                  class="form-control"
-                                  type="email"
-                                  id="email"
-                                  name="email"
-                                  placeholder="Enter  Employee Email"
-                                  required
-                                />
-                              </div>
-                              <div class="form-group">
-                                <label for="department">Department</label>
-                                <div class="col-xs-12 ps-0">
-                                  <select
-                                    class="form-control"
-                                    id="department"
-                                    name="department"
-                                  ></select>
+              <div class="d-flex flex-column align-items-start gap-3">
+ 
+               <div id="employee-details">
+ 
+               </div>
+  <div class="block tabs">
+                                <ul class="nav nav-tabs nav-tabs-alt" data-toggle="tabs">
+                                    <li class="active">
+                                        <a href="#overview">Overview</a>
+                                    </li>
+                                    <li>
+                                        <a href="#history">history</a>
+                                    </li>
+                                    
+                                </ul>
+                                <div class="block-content tab-content">
+                                    <div class="tab-pane active" id="overview">
+                                <div class="title" >
+                                          <h4 class="font-w600 push-15"> Employee Details   </h4>
+                                         <button class="btn">Edit</button>
                                 </div>
-                              </div>
-                              <div class="form-group">
-                                <label for="manager">Manager</label>
-                                <div class="col-xs-12 ps-0">
-                                  <select
-                                    class="form-control"
-                                    id="manager"
-                                    name="manager"
-                                  ></select>
+                                         <div id="overview"> </div>
+                                    </div>
+                                    <div class="tab-pane" id="history">
+                                        <h4 class="font-w300 push-15"> history Tab</h4>
+                                       
+                                     
+                                    </div>
+                                    
                                 </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button
-                                  class="btn btn-sm btn-default"
-                                  type="button"
-                                  data-dismiss="modal"
-                                >
-                                  Close
-                                </button>
-                                <button
-                                  class="btn btn-sm btn-primary add-btn"
-                                  type="submit"
-                                >
-                                  <i class="fa fa-check"></i> Add
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                            </div>
               </div>
             </div>
-            <div class="block-content">
-              <table
-                class="table table-borderless table-striped table-vcenter employee-table"
-              >
-                <thead>
-                  <tr>
-                    <th class="text-center" style="width: 100px">Employee</th>
-                    <th class="hidden-xs text-center">Email</th>
-                    <th>Department</th>
-                    <th class="visible-lg">Manager</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Rows will be populated dynamically -->
-                </tbody>
-              </table>
-              <nav class="text-center">
-                <ul class="pagination pagination-sm">
-                  <!-- Pagination links will be dynamically inserted here -->
-                </ul>
-              </nav>
+           
+           
             </div>
           </div>
           <!-- END All employees -->
@@ -460,8 +363,7 @@
 
     <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+ 
     <script src="assets/js/core/bootstrap.min.js"></script>
     <script src="assets/js/core/jquery.slimscroll.min.js"></script>
     <script src="assets/js/core/jquery.scrollLock.min.js"></script>
@@ -479,5 +381,7 @@
       });
     </script>
     <script src="js/employee.js"></script>
+    <script src="js/employeeDetails.js"></script>
+    
   </body>
 </html>

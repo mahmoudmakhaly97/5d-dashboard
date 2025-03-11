@@ -1,0 +1,11 @@
+.tabs {
+  margin-top: 20px;
+}
+#overview .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+#overview .title .btn {
+  border: 1px solid #ddd;
+}

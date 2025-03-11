@@ -26,3 +26,6 @@
 .modal-dialog {
   margin: 10% auto;
 }
+.employee-table tr {
+  cursor: pointer;
+}
