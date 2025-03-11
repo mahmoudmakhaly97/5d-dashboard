@@ -51,12 +51,17 @@ function displayEmployeeDetails(employee) {
           </div>
    </div>
       `;
-  overview.innerHTML = `     <p><strong>Full Name:</strong> ${employee.name}</p>
+  overview.innerHTML = ` <div style="display:flex  ">   <div > 
+  <p><strong>Full Name:</strong> ${employee.name}</p>
       <p><strong>Work Email:</strong> ${employee.email}</p>
-      <p><strong>Department:</strong> ${employee.department}</p>
-      <p><strong>Job Title:</strong> ${employee.jobTitle || ""}</p>
+      <p><strong>Department:</strong> ${employee.department}</p></div>
+     <div style="padding-left:250px"> <p><strong>Job Title:</strong> ${
+       employee.jobTitle || ""
+     }</p>
       <p><strong>managerName:</strong> ${employee.managerName || ""}</p>
-      <p><strong>mobile Number:</strong> ${employee.mobileNumber || ""}</p>`
+      <p><strong>mobile Number:</strong> ${
+        employee.mobileNumber || ""
+      }</p></div></div>`;
 }
 
 // Extract employee ID from URL and fetch details
