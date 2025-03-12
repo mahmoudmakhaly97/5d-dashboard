@@ -9,3 +9,6 @@
 #overview .title .btn {
   border: 1px solid #ddd;
 }
+.modal-dialog {
+  margin: 10% auto;
+}

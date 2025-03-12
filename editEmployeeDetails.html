@@ -261,7 +261,122 @@
                                 <div class="block-content tab-content">
                                         <div class="title" >
                                           <h3 class="font-w600 push-15"> Employee Details   </h3>
-                                         <button class="btn">Edit</button>
+                                         <button class="btn"    data-toggle="modal"
+                  data-target="#modal-fadein"
+                  type="button">Edit</button>
+                     <div
+                  class="modal fade"
+                  id="modal-fadein"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog add-employee-modal">
+                    <div class="modal-content" id="modal-content">
+                      <div
+                        class="block block-themed block-transparent remove-margin-b"
+                      >
+                        <div class="block-header bg-primary-dark">
+                          <ul class="block-options">
+                            <li>
+                              <button data-dismiss="modal" type="button">
+                                <i class="si si-close"></i>
+                              </button>
+                            </li>
+                          </ul>
+                          <h3 class="block-title">Edit Employee</h3>
+                        </div>
+                        <div class="block-content">
+                          <div class="block-content pt-0">
+                            <form
+                              class="form-horizontal push-5-t"
+                              id="add-employee-form"
+                            >
+                              <div class="form-group">
+                                <label for="name">Employee Name</label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  id="name"
+                                  name="name"
+                                  placeholder="Enter  Employee Name"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="email">Employee Email</label>
+                                <input
+                                  class="form-control"
+                                  type="email"
+                                  id="email"
+                                  name="email"
+                                  placeholder="Enter  Employee Email"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="jobTitle"> Job Title  </label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  id="jobTitle"
+                                  name="jobTitle"
+                                  placeholder="Enter  Employee jobTitle"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="mobileNumber"> Mobile Number  </label>
+                                <input
+                                  class="form-control"
+                                  type="text"
+                                  id="mobileNumber"
+                                  name="mobileNumber"
+                                  placeholder="Enter  Employee mobile Number"
+                                  required
+                                />
+                              </div>
+                              <div class="form-group">
+                                <label for="department">Department</label>
+                                   <select
+                                    class="form-control"
+                                    id="department"
+                                    name="department"
+                                  ></select>
+                              
+                              </div>
+                              <div class="form-group">
+                                <label for="manager">Manager</label>
+                               
+                                  <select
+                                    class="form-control"
+                                    id="manager"
+                                    name="manager"
+                                  ></select>
+                         
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-sm btn-default"
+                                  type="button"
+                                  data-dismiss="modal"
+                                >
+                                  Close
+                                </button>
+                                <button
+                                  class="btn btn-sm btn-primary add-btn"
+                                  type="submit"
+                                >
+                                  <i class="fa fa-check"></i> Add
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                                 </div>
                                     <div class="tab-pane active" id="overview">
                           
